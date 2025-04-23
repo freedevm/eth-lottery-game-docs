@@ -165,8 +165,30 @@ Boosting 5 Tickets</figcaption></picture></div><p class="mx-auto w-full decorati
                     </p>
                     <ul class="list-disc list-inside text-gray-700 space-y-2">
                         <li><strong>Network:</strong> Ethereum Mainnet / Sepolia Testnet</li>
-                        <li><strong>Randomness:</strong> User Code</li>
+                        <li><strong>Random:</strong> UserCode / TimeStamp / Private</li>
                     </ul>
+
+<pre class="bg-gray-900 text-white p-4 rounded-lg overflow-x-auto">
+pragma solidity ^0.8.0;
+
+contract LotteryGame is Ownable {
+    // dummy code
+    uint256 private randomSeed;            // Private seed for randomness
+    
+
+    constructor(address _vrfCoordinator, address _link) {
+        // dummy code
+        randomSeed = uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao)));
+    }
+    
+    function buyTickets(uint256 gameIndex, uint256[] calldata tokenIds, uint256[] calldata counts, uint256 userRandom) external payable {
+        // dummy
+        randomSeed = uint256(keccak256(abi.encodePacked(randomSeed, userRandom)));
+    }
+    
+    // Additional functions for randomness and prize distribution
+}
+</pre>
                 </main>
             </section>
         </main>
